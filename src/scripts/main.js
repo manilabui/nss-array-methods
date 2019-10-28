@@ -177,7 +177,12 @@ agents.forEach(agent => {
 document.querySelector("#agentSearch").addEventListener("keypress", keyPressEvent => {
     if (keyPressEvent.charCode === 13) {
         /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
-        const foundAgent = agents.find(agent => agent.firstName.includes(keyPressEvent.target.value) || agent.lastName.includes(keyPressEvent.target.value));
+        const foundAgent = agents.find(agent => {
+            const input = keyPressEvent.target.value;
+            const { firstName, lastName } = agent;
+
+            return firstName.includes(input) || lastName.includes(input);
+        });
 
         const { firstName, lastName, company, phoneNumber } = foundAgent;
 
@@ -198,3 +203,10 @@ console.log(totalRainfall);
 const words = ["The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog"];
 const sentence = words.reduce((acc, word) => acc += ` ${word}`);
 console.log(sentence);
+
+// practice: big spenders
+const bigSpenders = businesses.filter(business => {
+    const ordersTotal = business.orders.reduce((acc, order) => acc += order);
+
+    return ordersTotal > 9000;
+});
