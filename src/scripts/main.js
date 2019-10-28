@@ -149,15 +149,13 @@ const agents = businesses.map(business => {
     const { purchasingAgent, companyName, phoneWork } = business;
     const { nameLast, nameFirst } = purchasingAgent;
 
-    const agentObj = { 
+    return { 
         firstName: nameFirst,
         lastName: nameLast,
         company: companyName,
         phoneNumber: phoneWork
     };
-
-    return agentObj;
-})
+});
 
 agents.forEach(agent => {
     const { firstName, lastName, company, phoneNumber } = agent;
